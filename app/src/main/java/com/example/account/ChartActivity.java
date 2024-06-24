@@ -63,6 +63,10 @@ public class ChartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chart);
 
+        // 获取系统当前日期并格式化
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        date = sdf.format(new Date());
+
         // 初始化ViewModel
         accountViewModel = new ViewModelProvider(this).get(AccountViewModel.class);
 
@@ -94,6 +98,7 @@ public class ChartActivity extends AppCompatActivity {
         });
 
         tvSetDate = findViewById(R.id.tv_set_date);
+        tvSetDate.setText(date);  // 设置显示当前日期
         tvSetDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

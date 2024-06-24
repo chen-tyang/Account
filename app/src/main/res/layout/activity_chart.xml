@@ -12,7 +12,8 @@
         android:text="点击此处设置日期"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        />
 
     <RadioGroup
         android:id="@+id/radio_group_period"

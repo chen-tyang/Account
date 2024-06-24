@@ -48,13 +48,12 @@ import java.util.Map;
 import java.util.Random;
 
 public class ChartActivity extends AppCompatActivity {
-    private String date = "2024-06-18";  // 选定的日期
+    private String date = "";  // 选定的日期
     private String period = "日";  // 选定的时期（日/周/月/年）
     private String type = "所有";  // 选定的类型（所有/支出/收入）
     private TextView tvSetDate;
     private RadioGroup radioGroupPeriod;
     private RadioGroup radioGroupType;
-
     private AccountViewModel accountViewModel;
     PieChart pieChart;
     BarChart barChart;
@@ -125,16 +124,44 @@ public class ChartActivity extends AppCompatActivity {
         radioGroupPeriod.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // 根据选中的 RadioButton 的 id 来判断用户选择的时期
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                Calendar c = Calendar.getInstance();
+                try {
+                    c.setTime(sdf.parse(date));  // 将基准日期设置为用户选择的日期
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                String startDate = sdf.format(c.getTime());  // 默认值为用户选择的日期
+                String endDate = startDate;  // 默认值为用户选择的日期
                 if (checkedId == R.id.radio_day) {
                     period = "日";
                 } else if (checkedId == R.id.radio_week) {
                     period = "周";
+                    c.add(Calendar.DATE, -3);
+                    startDate = sdf.format(c.getTime());
+                    c.add(Calendar.DATE, 6);
+                    endDate = sdf.format(c.getTime());
                 } else if (checkedId == R.id.radio_month) {
                     period = "月";
+                    c.set(Calendar.DAY_OF_MONTH, 1);
+                    startDate = sdf.format(c.getTime());
+                    c.set(Calendar.DAY_OF_MONTH, c.getActualMaximum(Calendar.DAY_OF_MONTH));
+                    endDate = sdf.format(c.getTime());
                 } else if (checkedId == R.id.radio_year) {
                     period = "年";
+                    c.set(Calendar.DAY_OF_YEAR, 1);
+                    startDate = sdf.format(c.getTime());
+                    c.set(Calendar.DAY_OF_YEAR, c.getActualMaximum(Calendar.DAY_OF_YEAR));
+                    endDate = sdf.format(c.getTime());
                 }
+
+                // 如果开始日期和结束日期相同，只显示一个日期
+                if (startDate.equals(endDate)) {
+                    tvSetDate.setText(startDate);
+                } else {
+                    tvSetDate.setText(startDate + " - " + endDate);
+                }
+
                 showPieChart();  // 更新饼图
                 showBarChart();
                 showLineChart();

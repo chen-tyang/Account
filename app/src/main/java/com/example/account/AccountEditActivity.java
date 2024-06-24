@@ -30,12 +30,9 @@ public class AccountEditActivity extends AppCompatActivity {
     private EditText editTextRemarks;
     private Spinner spinner;
 
-    // 增加一个成员变量来存储 decimalPlaces
-    private int decimalPlaces;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_account_edit);
         spinner = findViewById(R.id.spinner);
         editTextAmount = findViewById(R.id.editTextAmount);
@@ -49,9 +46,7 @@ public class AccountEditActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        // 从 Intent 中获取 decimalPlaces 的值
         Intent intent = getIntent();
-        decimalPlaces = intent.getIntExtra("decimalPlaces", 2);
         int accountId = intent.getIntExtra("accountId", -1);
         // 初始化ViewModel
         accountViewModel = new ViewModelProvider(this).get(AccountViewModel.class);
@@ -91,8 +86,7 @@ public class AccountEditActivity extends AppCompatActivity {
                     String amountString = editTextAmount.getText().toString();
                     double amount = Double.parseDouble(editTextAmount.getText().toString());
                     if (!isValidAmount(amountString)) {
-                        String toastMessage = String.format("金额应当最多包含%d位小数", decimalPlaces);
-                        Toast.makeText(AccountEditActivity.this, toastMessage, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AccountEditActivity.this, "金额应当最多包含两位小数", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     accountToEdit.getValue().setAmount(amount);
@@ -131,8 +125,7 @@ public class AccountEditActivity extends AppCompatActivity {
                     String amountString = editTextAmount.getText().toString();
                     double amount = Double.parseDouble(amountString);
                     if (!isValidAmount(amountString)) {
-                        String toastMessage = String.format("金额应当最多包含%d位小数", decimalPlaces);
-                        Toast.makeText(AccountEditActivity.this, toastMessage, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AccountEditActivity.this, "金额应当最多包含两位小数", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     String remarks = editTextRemarks.getText().toString();
@@ -163,13 +156,9 @@ public class AccountEditActivity extends AppCompatActivity {
     private boolean isValidAmount(String amountString) {
         int decimalIndex = amountString.indexOf(".");//用于查找金额字符串中小数点的位置。如果不存在小数点，indexOf返回-1。
         //decimalIndex确保字符串中存在小数点,amountString.length() - decimalIndex - 1 > 2计算小数点后的位数，并检查是否超过两位。
-        if (decimalIndex >= 0) {
-            int decimalPlacesInAmount = amountString.length() - decimalIndex - 1;
-            if ((decimalPlaces == 2 && decimalPlacesInAmount > 2) || (decimalPlaces == 6 && decimalPlacesInAmount > 6)) {
-                return false;
-            }
+        if (decimalIndex >= 0 && amountString.length() - decimalIndex - 1 > 2) {
+            return false;
         }
         return true;
     }
-
 }

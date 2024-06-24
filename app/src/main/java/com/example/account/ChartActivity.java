@@ -93,7 +93,6 @@ public class ChartActivity extends AppCompatActivity {
             }
         });
 
-
         tvSetDate = findViewById(R.id.tv_set_date);
         tvSetDate.setOnClickListener(new View.OnClickListener() {
             @Override

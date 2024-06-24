@@ -1,0 +1,130 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ChartActivity">
+
+    <TextView
+        android:id="@+id/tv_set_date"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="点击此处设置日期"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textSize="20sp"/>
+
+    <RadioGroup
+        android:id="@+id/radio_group_period"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_set_date"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radio_day"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="日"
+            android:checked="true"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/radio_week"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="周"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/radio_month"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="月"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/radio_year"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="年"
+            android:layout_weight="1"/>
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/radio_group_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radio_group_period"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radio_all"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="所有"
+            android:checked="true"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/radio_income"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="收入"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/radio_expenditure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="支出" />
+    </RadioGroup>
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pie_chart"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_below="@+id/radio_group_type" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/pie_chart"/>
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/bar_chart"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_below="@+id/view1"/>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/bar_chart"/>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/line_chart"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_below="@+id/view2"/>
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line_chart"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="155dp"
+        android:text="返回" />
+</RelativeLayout>

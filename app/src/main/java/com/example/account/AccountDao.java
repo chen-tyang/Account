@@ -64,7 +64,6 @@ public interface AccountDao {
 
     @Query("SELECT * FROM account_table WHERE strftime('%Y-%m-%d', time / 1000 , 'unixepoch') BETWEEN date(:date, '-3 day') AND date(:date, '+3 day') AND type IN ('餐饮', '购物', '交通', '运动', '娱乐', '学习', '办公')")
     LiveData<List<Account>> getExpenditureAccountsByWeek(String date);
-
     @Query("SELECT * FROM account_table WHERE strftime('%Y-%m', time / 1000 , 'unixepoch') = strftime('%Y-%m', :date) AND type IN ('餐饮', '购物', '交通', '运动', '娱乐', '学习', '办公')")
     LiveData<List<Account>> getExpenditureAccountsByMonth(String date);
 

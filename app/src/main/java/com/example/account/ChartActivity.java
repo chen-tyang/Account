@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -99,6 +100,7 @@ public class ChartActivity extends AppCompatActivity {
 
         tvSetDate = findViewById(R.id.tv_set_date);
         tvSetDate.setText(date);  // 设置显示当前日期
+
         tvSetDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

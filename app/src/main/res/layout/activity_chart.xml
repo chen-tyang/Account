@@ -13,8 +13,7 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:textSize="20sp"
-        />
-
+        android:background="#87CEEB"/>
     <RadioGroup
         android:id="@+id/radio_group_period"
         android:layout_width="match_parent"

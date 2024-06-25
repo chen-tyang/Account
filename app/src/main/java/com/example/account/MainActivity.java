@@ -8,13 +8,17 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -35,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     // 增加一个变量来表示保留的小数位数
     private int decimalPlaces = 2;
-
+    String [] yourArray;
+    int [] yourImageArray;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +51,25 @@ public class MainActivity extends AppCompatActivity {
         TextView tvIncome = findViewById(R.id.tv_income);
         TextView tvExpenditure = findViewById(R.id.tv_expenditure);
 
+        yourArray = getResources().getStringArray(R.array.spinner_option);
+        yourImageArray = new int[]{
+                R.drawable.all,
+                R.drawable.part_time_job,
+                R.drawable.other,
+                R.drawable.other,
+                R.drawable.catering,
+                R.drawable.shopping,
+                R.drawable.transportation,
+                R.drawable.sports,
+                R.drawable.entertainment,
+                R.drawable.learning,
+                R.drawable.office_work,
+                R.drawable.salary,
+                R.drawable.part_time_job,
+                R.drawable.financial_management,
+                R.drawable.other
+        };
+
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,11 +79,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 用新的 ImageArrayAdapter 替换你现有的 ArrayAdapter
         spinner = findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.spinner_option, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        ImageArrayAdapter spinnerAdapter = new ImageArrayAdapter(this, R.layout.spinner_with_image, yourArray, yourImageArray);
+        spinner.setAdapter(spinnerAdapter);
 
 
         recyclerView = findViewById(R.id.recycler_view);
@@ -188,4 +211,6 @@ public class MainActivity extends AppCompatActivity {
             tvTotalAmount.setText("总金额：" + formattedTotalAmount);
         }
     }
+
 }
+

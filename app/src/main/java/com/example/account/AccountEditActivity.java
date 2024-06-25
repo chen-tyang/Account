@@ -30,10 +30,27 @@ public class AccountEditActivity extends AppCompatActivity {
     private EditText editTextRemarks;
     private Spinner spinner;
 
+    String [] array;
+    int [] imageArray;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_edit);
+
+        array = getResources().getStringArray(R.array.spinner_type);
+        imageArray = new int[]{
+                R.drawable.catering,
+                R.drawable.shopping,
+                R.drawable.transportation,
+                R.drawable.sports,
+                R.drawable.entertainment,
+                R.drawable.learning,
+                R.drawable.office_work,
+                R.drawable.salary,
+                R.drawable.part_time_job,
+                R.drawable.financial_management,
+        };
+
         spinner = findViewById(R.id.spinner);
         editTextAmount = findViewById(R.id.editTextAmount);
         editTextRemarks = findViewById(R.id.editTextRemarks);
@@ -41,10 +58,10 @@ public class AccountEditActivity extends AppCompatActivity {
         buttonSave = findViewById(R.id.buttonSave);
         buttonDelete = findViewById(R.id.buttonDelete);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.spinner_type, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        // 用新的 ImageArrayAdapter 替换你现有的 ArrayAdapter
+        spinner = findViewById(R.id.spinner);
+        ImageArrayAdapter spinnerAdapter = new ImageArrayAdapter(this, R.layout.spinner_with_image, array, imageArray);
+        spinner.setAdapter(spinnerAdapter);
 
         Intent intent = getIntent();
         int accountId = intent.getIntExtra("accountId", -1);
@@ -68,7 +85,7 @@ public class AccountEditActivity extends AppCompatActivity {
                         // 获取'spinnerOption'从account的'type'字段
                         String spinnerOption = account.getType();
                         // 在spinner的适配器中找到该选项对应的位置
-                        int spinnerPosition = adapter.getPosition(spinnerOption);
+                        int spinnerPosition = spinnerAdapter.getPosition(spinnerOption);
                         // 设定spinner的选项为该位置
                         spinner.setSelection(spinnerPosition);
                     }

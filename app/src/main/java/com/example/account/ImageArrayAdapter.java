@@ -16,6 +16,16 @@ public class ImageArrayAdapter extends ArrayAdapter<String> {
         this.imageResourceID = imageResourceID;
     }
 
+    // 添加方法用于找到特定选项的位置
+    public int getPosition(String spinnerOption) {
+        for (int i = 0; i < getCount(); i++) {
+            if (getItem(i).equals(spinnerOption)) {
+                return i; // 找到该选项在适配器中的位置并返回
+            }
+        }
+        return -1; // 如果找不到对应选项，返回-1
+    }
+
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         return createItemView(position, convertView, parent);
     }

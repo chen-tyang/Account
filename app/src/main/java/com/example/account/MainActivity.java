@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         ImageArrayAdapter spinnerAdapter = new ImageArrayAdapter(this, R.layout.spinner_with_image, yourArray, yourImageArray);
         spinner.setAdapter(spinnerAdapter);
 
-
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         accountListAdapter = new AccountListAdapter(new ArrayList<>());

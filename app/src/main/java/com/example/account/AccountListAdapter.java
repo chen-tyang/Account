@@ -23,6 +23,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
         this.decimalPlaces = decimalPlaces;
         notifyDataSetChanged(); // 通知Adapter数据已经改变，让它刷新所有的列表项
     }
+
     public interface OnItemClickListener {
         void onItemClick(Account account);
     }

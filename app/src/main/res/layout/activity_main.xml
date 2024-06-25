@@ -1,5 +1,7 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -28,7 +30,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="8dp"
-            android:text="收入：" />
+            android:text="收入："
+            android:background="#FF0000"/>
 
         <TextView
             android:id="@+id/tv_expenditure"
@@ -37,7 +40,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="8dp"
-            android:text="支出：" />
+            android:text="支出："
+            android:background="#008000"/>
     </LinearLayout>
 
     <LinearLayout

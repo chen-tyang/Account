@@ -42,14 +42,6 @@ public interface AccountDao {
     @Query("SELECT * FROM account_table WHERE strftime('%Y-%m-%d', time / 1000 , 'unixepoch') = :date")
     LiveData<List<Account>> getAccountsByDate(String date);
 
-    /*@Query("SELECT * FROM account_table WHERE strftime('%Y-%W', time / 1000 , 'unixepoch') = :week")
-    LiveData<List<Account>> getAccountsByWeek(String week);
-
-    @Query("SELECT * FROM account_table WHERE strftime('%Y-%m', time / 1000 , 'unixepoch') = :month")
-    LiveData<List<Account>> getAccountsByMonth(String month);
-
-    @Query("SELECT * FROM account_table WHERE strftime('%Y', time / 1000 , 'unixepoch') = :year")
-    LiveData<List<Account>> getAccountsByYear(String year);*/
     @Query("SELECT * FROM account_table WHERE strftime('%Y-%m-%d', time / 1000 , 'unixepoch') BETWEEN date(:date, '-3 day') AND date(:date, '+3 day')")
     LiveData<List<Account>> getAccountsByWeek(String date);
 

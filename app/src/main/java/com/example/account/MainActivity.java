@@ -46,10 +46,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         buttonAdd = findViewById(R.id.btn_add);
-        // 修改总金额的TextView文本值
-        TextView tvTotalAmount = findViewById(R.id.tv_total_amount);
-        TextView tvIncome = findViewById(R.id.tv_income);
-        TextView tvExpenditure = findViewById(R.id.tv_expenditure);
 
         yourArray = getResources().getStringArray(R.array.spinner_option);
         yourImageArray = new int[]{

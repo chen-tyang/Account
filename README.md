@@ -2,7 +2,7 @@
 
 ### 系统架构图
 
-
+![架构图](IMG/架构图.png)
 
 本系统包含了三个主要组成部分：View、ViewModel和Model。
 View：包括三个主要的视图组件，分别是MainActivity、AccountEditActivity和ChartActivity。这些视图组件负责用户界面的展示和交互。
@@ -34,4 +34,4 @@ B21032007陈天阳：负责MainActivity的所有显示和页面布局
 1. **ChartActivity**：这个Activity也是从MainActivity启动的，用于显示账户信息的图表。当用户在MainActivity点击图表按钮时，就会启动这个Activity。这个界面会显示一个根据账户信息生成的图表，用户可以通过这个图表直观地了解到自己的收入和支出情况。
 
 2. 给下拉列表设置样式，而不是使用默认样式
-3. 可根据用户需求选择标准和科学两种模式
+3. 可根据用户需求选择标准和科学两种模式，并且根据选择的模式，输入的金额也有位数限制

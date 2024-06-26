@@ -35,7 +35,7 @@ public class AccountEditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//array读取res/strings里的type类型的选项
+        //array读取res/strings里的type类型的选项
         //imageArray对应图片编号
         array = getResources().getStringArray(R.array.spinner_type);
         imageArray = new int[]{
@@ -62,10 +62,6 @@ public class AccountEditActivity extends AppCompatActivity {
         buttonDelete = findViewById(R.id.buttonDelete);
         buttonCancel = findViewById(R.id.buttonCancel);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.spinner_type, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
 
         // 从 Intent 中获取 decimalPlaces 的值
         Intent intent = getIntent();

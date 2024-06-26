@@ -50,6 +50,8 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
                     if (listener != null && position != RecyclerView.NO_POSITION) {
                         Account account = myDataset.get(position);
                         Intent intent = new Intent(v.getContext(), AccountEditActivity.class);
+
+                        intent.putExtra("decimalPlaces", decimalPlaces); // 也传递 decimalPlaces 的值
                         intent.putExtra("accountId", account.getId());
                         v.getContext().startActivity(intent);
                     }

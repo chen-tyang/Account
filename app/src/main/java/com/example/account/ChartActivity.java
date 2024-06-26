@@ -80,10 +80,13 @@ public class ChartActivity extends AppCompatActivity {
         // 初始化BarChart
         barChart = findViewById(R.id.bar_chart);
 
+        // 显示柱状图
         showBarChart();
 
+        // 初始化折线图
         lineChart = findViewById(R.id.line_chart);
 
+        // 显示折线图
         showLineChart();
 
         // 获取按钮
@@ -116,8 +119,8 @@ public class ChartActivity extends AppCompatActivity {
                         tvSetDate.setText(date);
 
                         showPieChart();  // 更新饼图
-                        showBarChart();
-                        showLineChart();
+                        showBarChart();  // 更新柱状图
+                        showLineChart(); // 更新折线图
                     }
                 }, year, month, day);
                 datePickerDialog.show();
@@ -169,8 +172,8 @@ public class ChartActivity extends AppCompatActivity {
                 }
 
                 showPieChart();  // 更新饼图
-                showBarChart();
-                showLineChart();
+                showBarChart();  // 更新柱状图
+                showLineChart(); // 更新折线图
             }
         });
         radioGroupType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -185,8 +188,8 @@ public class ChartActivity extends AppCompatActivity {
                     type = "支出";
                 }
                 showPieChart();  // 更新饼图
-                showBarChart();
-                showLineChart();
+                showBarChart();  // 更新柱状图
+                showLineChart(); // 更新折线图
             }
         });
     }
@@ -393,6 +396,7 @@ public class ChartActivity extends AppCompatActivity {
                 accountsLiveData = accountViewModel.getExpenditureAccountsByYear(date);
             }
         }
+
         // 观察账户数据的变化，并在数据变化时更新折线图
         accountsLiveData.observe(this, new Observer<List<Account>>() {
             @Override
@@ -402,6 +406,7 @@ public class ChartActivity extends AppCompatActivity {
             }
         });
     }
+
     private void updateLineChartData(List<Account> accounts) {
         List<Entry> entries = new ArrayList<>();
 
@@ -414,7 +419,7 @@ public class ChartActivity extends AppCompatActivity {
             entries.add(new Entry(x, y));
         }
 
-        LineDataSet dataSet = new LineDataSet(entries, "Label");
+        LineDataSet dataSet = new LineDataSet(entries, "金额");
         dataSet.setColor(Color.BLUE);
         dataSet.setValueTextColor(Color.BLACK);
 

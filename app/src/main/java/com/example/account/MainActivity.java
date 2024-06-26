@@ -27,8 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
     private Button buttonAdd;
+    private Button chartButton;
     private AccountListAdapter accountListAdapter;
     private RecyclerView recyclerView;
     private AccountViewModel accountViewModel;
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.other
         };
 
+        //添加按钮
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         ImageArrayAdapter spinnerAdapter = new ImageArrayAdapter(this, R.layout.spinner_with_image, yourArray, yourImageArray);
         spinner.setAdapter(spinnerAdapter);
 
+        //使用AccountListAdapter的显示风格显示到recyclerview中
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         accountListAdapter = new AccountListAdapter(new ArrayList<>());
@@ -96,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         //初始化accountViewModel
         accountViewModel = new ViewModelProvider(this).get(AccountViewModel.class);
 
+        //通过AccountViewModel显示所有的数据
         accountViewModel.getAllAccounts().observe(this, new Observer<List<Account>>() {
             @Override
             public void onChanged(@Nullable final List<Account> accounts) {
@@ -103,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //下拉列表的选项
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 String selectedType = (String) parent.getItemAtPosition(pos);
@@ -125,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
                         accountsByType = accountViewModel.getAccountsByType(selectedType);
                 }
 
+                //通过accountsByType的accountViewModel所有符合条件的记录,然后把记录更新
                 accountsByType.observe(MainActivity.this, new Observer<List<Account>>() {
                     @Override
                     public void onChanged(@Nullable final List<Account> accounts) {
@@ -139,7 +144,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button chartButton = findViewById(R.id.btn_chart); // 实际的id需要根据你的设置来
+        //视图按钮
+        chartButton = findViewById(R.id.btn_chart);
         chartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    //更新金额的显示
     private void updateAmounts() {
         List<Account> currentAccounts = accountViewModel.getAllAccounts().getValue();
         if(currentAccounts != null) {
@@ -206,6 +213,4 @@ public class MainActivity extends AppCompatActivity {
             tvTotalAmount.setText("总金额：" + formattedTotalAmount);
         }
     }
-
 }
-

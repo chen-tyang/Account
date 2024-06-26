@@ -21,6 +21,7 @@ public class AccountEditActivity extends AppCompatActivity {
 
     private Button buttonSave;
     private Button buttonDelete;
+    private Button buttonCancel;
     private AccountViewModel accountViewModel;
     private Account currentAccount;
     private EditText editTextAmount;
@@ -59,6 +60,7 @@ public class AccountEditActivity extends AppCompatActivity {
 
         buttonSave = findViewById(R.id.buttonSave);
         buttonDelete = findViewById(R.id.buttonDelete);
+        buttonCancel = findViewById(R.id.buttonCancel);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.spinner_type, android.R.layout.simple_spinner_item);
@@ -123,6 +125,13 @@ public class AccountEditActivity extends AppCompatActivity {
                     finish();
                 }
             });
+            buttonCancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // 返回主Activity
+                    finish();
+                }
+            });
             buttonDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -163,15 +172,14 @@ public class AccountEditActivity extends AppCompatActivity {
                     finish();
                 }
             });
-            buttonDelete.setText("取消");
-
-            buttonDelete.setOnClickListener(new View.OnClickListener() {
+            buttonCancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // 直接返回到主Activity
                     finish();
                 }
             });
+            buttonDelete.setVisibility(View.GONE);
         }
     }
 

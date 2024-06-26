@@ -1,99 +1,99 @@
 package com.example.account;
-
 import android.app.Application;
-
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-
 import java.util.List;
-
 public class AccountViewModel extends AndroidViewModel {
-    private AccountRepository mRepository;
-    private LiveData<List<Account>> mAllAccounts;
+    private final AccountRepository repository;
+    private final LiveData<List<Account>> allAccounts;
 
     public AccountViewModel(Application application) {
         super(application);
-        mRepository = new AccountRepository(application);
-        mAllAccounts = mRepository.getAllAccounts();
+        repository = new AccountRepository(application);
+        allAccounts = repository.getAllAccounts();
     }
-    LiveData<List<Account>> getAllAccounts() {
-        return mAllAccounts;
+
+    public LiveData<List<Account>> getAllAccounts() {
+        return allAccounts;
     }
+
     public void insert(Account account) {
-        mRepository.insert(account);
+        repository.insert(account);
     }
+
     public LiveData<Account> getAccount(int id) {
-        return mRepository.getAccount(id);
+        return repository.getAccount(id);
     }
+
     public void delete(Account account) {
-        mRepository.delete(account);
+        repository.delete(account);
     }
 
     public void update(Account account) {
-        mRepository.update(account);
+        repository.update(account);
     }
 
-    LiveData<List<Account>> getAccountsByType(String type) {
-        return mRepository.getAccountsByType(type);
+    public LiveData<List<Account>> getAccountsByType(String type) {
+        return repository.getAccountsByType(type);
     }
 
-    LiveData<List<Account>> getIncomeAccounts() {
-        return mRepository.getIncomeAccounts();
+    public LiveData<List<Account>> getIncomeAccounts() {
+        return repository.getIncomeAccounts();
     }
 
-    LiveData<List<Account>> getExpenditureAccounts() {
-        return mRepository.getExpenditureAccounts();
+    public LiveData<List<Account>> getExpenditureAccounts() {
+        return repository.getExpenditureAccounts();
     }
 
-    LiveData<List<Account>> getAccountsByTimeDesc() {
-        return mRepository.getAccountsByTimeDesc();
+    public LiveData<List<Account>> getAccountsByTimeDesc() {
+        return repository.getAccountsByTimeDesc();
     }
 
-    LiveData<List<Account>> getAccountsByDate(String date) {
-        return mRepository.getAccountsByDate(date);
+    public LiveData<List<Account>> getAccountsByDate(String date) {
+        return repository.getAccountsByDate(date);
     }
 
-    LiveData<List<Account>> getAccountsByWeek(String date) {
-        return mRepository.getAccountsByWeek(date);
+    public LiveData<List<Account>> getAccountsByWeek(String date) {
+        return repository.getAccountsByWeek(date);
     }
 
-    LiveData<List<Account>> getAccountsByMonth(String date) {
-        return mRepository.getAccountsByMonth(date);
+    public LiveData<List<Account>> getAccountsByMonth(String date) {
+        return repository.getAccountsByMonth(date);
     }
 
-    LiveData<List<Account>> getAccountsByYear(String date) {
-        return mRepository.getAccountsByYear(date);
+    public LiveData<List<Account>> getAccountsByYear(String date) {
+        return repository.getAccountsByYear(date);
     }
 
-    LiveData<List<Account>> getExpenditureAccountsByDate(String date) {
-        return mRepository.getExpenditureAccountsByDate(date);
+    public LiveData<List<Account>> getExpenditureAccountsByDate(String date) {
+        return repository.getExpenditureAccountsByDate(date);
     }
 
-    LiveData<List<Account>> getExpenditureAccountsByWeek(String date) {
-        return mRepository.getExpenditureAccountsByWeek(date);
+    public LiveData<List<Account>> getExpenditureAccountsByWeek(String date) {
+        return repository.getExpenditureAccountsByWeek(date);
     }
 
-    LiveData<List<Account>> getExpenditureAccountsByMonth(String date) {
-        return mRepository.getExpenditureAccountsByMonth(date);
+    public LiveData<List<Account>> getExpenditureAccountsByMonth(String date) {
+        return repository.getExpenditureAccountsByMonth(date);
     }
 
-    LiveData<List<Account>> getExpenditureAccountsByYear(String date) {
-        return mRepository.getExpenditureAccountsByYear(date);
+    public LiveData<List<Account>> getExpenditureAccountsByYear(String date) {
+        return repository.getExpenditureAccountsByYear(date);
     }
 
-    LiveData<List<Account>> getIncomeAccountsByDate(String date) {
-        return mRepository.getIncomeAccountsByDate(date);
+    public LiveData<List<Account>> getIncomeAccountsByDate(String date) {
+        return repository.getIncomeAccountsByDate(date);
     }
 
-    LiveData<List<Account>> getIncomeAccountsByWeek(String date) {
-        return mRepository.getIncomeAccountsByWeek(date);
+    public LiveData<List<Account>> getIncomeAccountsByWeek(String date) {
+        return repository.getIncomeAccountsByWeek(date);
     }
 
-    LiveData<List<Account>> getIncomeAccountsByMonth(String date) {
-        return mRepository.getIncomeAccountsByMonth(date);
+    public LiveData<List<Account>> getIncomeAccountsByMonth(String date) {
+        return repository.getIncomeAccountsByMonth(date);
     }
 
-    LiveData<List<Account>> getIncomeAccountsByYear(String date) {
-        return mRepository.getIncomeAccountsByYear(date);
+    public LiveData<List<Account>> getIncomeAccountsByYear(String date) {
+        return repository.getIncomeAccountsByYear(date);
     }
 }

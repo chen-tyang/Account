@@ -17,6 +17,10 @@ B21032007陈天阳：负责MainActivity的所有显示和页面布局
 * Converters。这些模型组件负责数据的存储、访问和处理。Account是数据实体类，AccountDao是用于定义数据库操作的接口，AccountRepository是用于管理数据操作的中间层，AccountRoomDatabase是Room数据库实例，Converters是用于日期类型转换的类。
   在系统架构中，View通过ViewModel与Model进行交互，ViewModel负责协调View和Model之间的数据流动和业务逻辑处理，而Model负责数据的存储和处理。
 
+### 时序图
+
+![时序图](IMG/时序图.png)
+
 ### 类图
 
 ![类图](IMG/类图.png)

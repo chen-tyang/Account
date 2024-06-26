@@ -62,7 +62,6 @@ public class AccountEditActivity extends AppCompatActivity {
         buttonDelete = findViewById(R.id.buttonDelete);
         buttonCancel = findViewById(R.id.buttonCancel);
 
-
         // 从 Intent 中获取 decimalPlaces 的值
         Intent intent = getIntent();
         decimalPlaces = intent.getIntExtra("decimalPlaces", 2);

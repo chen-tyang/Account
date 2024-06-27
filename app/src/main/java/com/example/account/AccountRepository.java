@@ -7,6 +7,9 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+/**
+ *
+ */
 public class AccountRepository {
     private AccountDao mAccountDao;
     private LiveData<List<Account>> mAllAccounts;
@@ -29,6 +32,10 @@ public class AccountRepository {
         return mAccountDao.getAccount(id);
     }
 
+    /**
+     * 使用AsyncTask使用内部的线程池来执行后台任务并会根据需要分配和管理线程资源. 在任务完成后将结果传递回主线程
+     * doInBackground(Params...)：在后台线程中执行实际的任务，不会阻塞主线程。从而防止应用界面无响应
+     */
     private static class insertAsyncTask extends AsyncTask<Account, Void, Void> {
         private AccountDao mAsyncTaskDao;
 

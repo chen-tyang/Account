@@ -7,7 +7,7 @@ import androidx.room.TypeConverters;
 import java.util.Date;
 
 @Entity(tableName = "account_table")
-@TypeConverters({Converters.class})//数据库不支持Date类型,只能转化为时间戳Long类型
+@TypeConverters({Converters.class})
 public class Account {
     @PrimaryKey(autoGenerate = true)
     private int id;

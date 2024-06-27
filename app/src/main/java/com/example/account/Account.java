@@ -7,7 +7,7 @@ import androidx.room.TypeConverters;
 import java.util.Date;
 
 @Entity(tableName = "account_table")
-@TypeConverters({Converters.class})//数据库不支持Date类型,只能转化为时间戳Long类型
+@TypeConverters({Converters.class})
 public class Account {
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -74,7 +74,5 @@ public class Account {
         return Math.round(amount * 100.0) / 100.0; // 返回保留两位小数的金额
     }
 
-    public double getAmountScientific() {
-        return Math.round(amount * 1000000.0) / 1000000.0; // 返回保留六位小数的金额
-    }
+    public double getAmountScientific() {return Math.round(amount * 1000000.0) / 1000000.0;} // 返回保留六位小数的金额
 }

@@ -1,9 +1,12 @@
 # 记账应用
 
 **各模块开发人员:**
-B21031914刘小渝：负责账单记录的增删改操作，主要负责AccountEditActivity的页面
-B21032009邓裕澄：负责数据库AccountDao，AccountRepository，AccountRoomDatabase和模型类AccountViewModel
-B21032007陈天阳：负责MainActivity的所有显示和页面布局
+
+* B21031914刘小渝：负责账单记录的增删改操作，主要负责AccountEditActivity的页面
+  
+* B21032009邓裕澄：负责数据库AccountDao，AccountRepository，AccountRoomDatabase和模型类AccountViewModel
+  
+* B21032007陈天阳：负责MainActivity的所有显示和页面布局
 
 ### 系统架构图
 
